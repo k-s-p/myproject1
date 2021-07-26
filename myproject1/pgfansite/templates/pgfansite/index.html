@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang = "ja-jp">
+    <head>
+        <title>アポログラフィティ</title>
+    </head>
+    <body>
+        <h1>アポログラフィティ</h1>
+        
+        <h2>スレッド一覧</h2>
+
+        {% for thread in threads.all %}
+
+        <a href="{% url 'detail' thread.id %}">{{ thread.title }}</a>
+        <br/><br/>
+        {{ thread.summary }}
+        <br/><br/>
+        {{ thread.updatedttm }}
+        <br/><br/>
+
+        {% endfor %}
+    </body>
+</html>

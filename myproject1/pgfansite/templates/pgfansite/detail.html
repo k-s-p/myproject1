@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang = "ja-jp">
+    <head>
+        <title>{{ thread.title }}</title>
+    </head>
+    <body>
+        <h2>{{ thread.title }}</h2>
+        {{ thread.body }}
+        <br/><br/>
+        {{ thread.published }}
+        <br/><br/>
+
+        <form method="POST" action="sample.cgi">
+        
+           <p>名前：<input type="text" name="username" value='名無し'></p>
+        
+           <p>本文:<br/>
+           <textarea name="body" rows="4" cols="40"></textarea>
+            </p>
+
+           <p><input type="submit" value="投稿する"></p>
+        </form>
+            
+    </body>
+</html>
