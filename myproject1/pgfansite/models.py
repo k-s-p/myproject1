@@ -17,10 +17,13 @@ class Thread(models.Model):
     def summary(self):
         return self.body[:50]
 
+    def body_count(self):
+        return len(self.body)
+
 class Response(models.Model):
     thread = models.ForeignKey(Thread, on_delete=models.CASCADE)
     resno = models.IntegerField(default=0)
-    published = models.DateTimeField()
+    published = models.DateTimeField(default=timezone.now)
     username = models.CharField(max_length=20)
     body = models.TextField()
 

@@ -5,20 +5,25 @@
     </head>
     <body>
         <h2>{{ thread.title }}</h2>
-        {{ thread.body }}
-        <br/><br/>
-        {{ thread.published }}
-        <br/><br/>
+        <div id=ResponseList>
+            {% if thread.image.url != None %}
+                <img src="{{ thread.image.url }}" class = "img-fluid rounded" style="max-height: 200px;"/><br>
+            {% endif %}
+            <p>{{ thread.body }}</p>
+            <p>[{{ thread.username }}]:{{ thread.published }}</p>
 
-        <form method="POST" action="sample.cgi">
-        
+            {% for responses in responses.all %}
+                <p>{{ responses.resno }}:[{{ responses.username }}]:{{ responses.published }}</p>
+                <p>{{ responses.body | linebreaks }}</p>
+            {% endfor %}
+        </div>
+        <form method="POST" action="{% url 'pgfansite:res_insert' thread.id %}">
            <p>名前：<input type="text" name="username" value='名無し'></p>
-        
            <p>本文:<br/>
            <textarea name="body" rows="4" cols="40"></textarea>
             </p>
-
            <p><input type="submit" value="投稿する"></p>
+           {% csrf_token %}
         </form>
             
     </body>
