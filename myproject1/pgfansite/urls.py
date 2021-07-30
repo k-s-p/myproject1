@@ -7,5 +7,5 @@ urlpatterns = [
     path('<int:thread_id>/', views.detail, name='detail'),
     path('<int:thread_id>/res_insert/', views.res_insert, name='res_insert'),
     path('thread/', views.thread, name='thread'),
-    path('thread/thread_insert/', views.thread_insert, name='thread_insert'),
+    path('newthread/', views.newthread, name='newthread'),
 ]
