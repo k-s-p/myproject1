@@ -35,7 +35,7 @@ def newthread(request):
     if request.method == 'POST':
         new_thread = Thread()
         new_thread.title = request.POST['title']
-        if 'image' in request.FILES:
+        if 'image' in request.FILES: #imageが空じゃないならrequestから取得する。FILESから空データを取得するならエラーとなる
             new_thread.image = request.FILES['image']
         new_thread.username = request.POST['username']
         new_thread.body = request.POST['body']

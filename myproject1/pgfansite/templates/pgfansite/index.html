@@ -10,18 +10,22 @@
         </p>
 
         <h2>スレッド一覧</h2>
-
+        <ul class="thread_list">
         {% for thread in threads.all %}
-
-            <h3><a href="{% url 'pgfansite:detail' thread.id %}">{{ thread.title }}</a>({{ thread.response_count }})</h3>
-            {% if thread.image.url != None %}
-                <img src="{{ thread.image.url }}" class = "img-fluid rounded" style="max-height: 200px;"/>
-            {% endif %}
-            <p>
-                {{ thread.summary }}
-                {% if thread.body_count > 50 %}...{% endif %}
-            </p>
-            {{ thread.username }}:{{ thread.updatedttm }}
+            <li class="main_list">
+                <a href="{% url 'pgfansite:detail' thread.id %}">
+                    <p>{{ thread.title }}({{ thread.response_count }})</p>
+                </a>
+                <p>
+                    {% if thread.image.url != None %}
+                        <img src="{{ thread.image.url }}" class = "img-fluid rounded" style="max-height: 50px;" align="left"/>
+                    {% endif %}
+                    {{ thread.summary }}
+                    {% if thread.body_count > 50 %}...{% endif %}<br>
+                    {{ thread.username }}:{{ thread.updatedttm }}
+                </p>
+            </li>
         {% endfor %}
+        </ul>
     </body>
 </html>
