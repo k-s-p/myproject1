@@ -1,31 +1,55 @@
-<!DOCTYPE html>
-<html lang = "ja-jp">
-    <head>
-        <title>アポログラフィティ</title>
-    </head>
-    <body>
-        <h1>アポログラフィティ</h1>
-        <p>
-            <button type="button" onclick=location.href="{% url 'pgfansite:thread' %}">スレッド作成</button>
-        </p>
+{% extends 'pgfansite/base.html' %}
 
-        <h2>スレッド一覧</h2>
-        <ul class="thread_list">
-        {% for thread in threads.all %}
-            <li class="main_list">
-                <a href="{% url 'pgfansite:detail' thread.id %}">
+{% block content %}
+
+<!-- <h1>アポログラフィティ</h1> -->
+<p>
+    <button type="button" onclick=location.href="{% url 'pgfansite:thread' %}">スレッド作成</button>
+</p>
+
+<div class="row mb-3">
+    {% for thread in threads.all %}
+    <div class="col-md-4">
+        <div class="row g-0 border rounded overflow-hidden flex-md-row 
+        mb-4 shadow-sm h-md-250 position-relative">
+            <div class="col p-4 d-flex flex-column position-static">
+                <a href="{% url 'pgfansite:detail' thread.id %}" class="stretched-link">
                     <p>{{ thread.title }}({{ thread.response_count }})</p>
                 </a>
-                <p>
-                    {% if thread.image.url != None %}
-                        <img src="{{ thread.image.url }}" class = "img-fluid rounded" style="max-height: 50px;" align="left"/>
-                    {% endif %}
-                    {{ thread.summary }}
-                    {% if thread.body_count > 50 %}...{% endif %}<br>
-                    {{ thread.username }}:{{ thread.updatedttm }}
-                </p>
-            </li>
-        {% endfor %}
-        </ul>
-    </body>
-</html>
+                {% if thread.image.url != None %}
+                    <img src="{{ thread.image.url }}" class="rounded float-left" style="max-height: 150px; max-width: 150px;"/>
+                {% endif %}
+            </div>
+            <div class="col p-4 d-flex flex-column position-static">
+                <!-- <div class="mb-1 text-muted">11/12</div> -->
+                <p class="col d-flex align-items-center">{{ thread.summary }}</p>
+                <p class="card-text mb-auto">{{ thread.username }}:{{ thread.updatedttm }}</p>
+                <!-- <a href="#" class="stretched-link">続きを読む</a> -->
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+
+
+<!-- <h2>スレッド一覧</h2>
+<ul class="thread_list">
+{% for thread in threads.all %}
+    <li class="main_list">
+        <a href="{% url 'pgfansite:detail' thread.id %}">
+            <p>{{ thread.title }}({{ thread.response_count }})</p>
+        </a>
+        <p>
+            {% if thread.image.url != None %}
+                <img src="{{ thread.image.url }}" class = "img-fluid rounded" style="max-height: 50px;" align="left"/>
+            {% endif %}
+            {{ thread.summary }}
+            {% if thread.body_count > 50 %}...{% endif %}<br>
+            {{ thread.username }}:{{ thread.updatedttm }}
+        </p>
+    </li>
+{% endfor %}
+</ul> -->
+
+{% endblock %}
