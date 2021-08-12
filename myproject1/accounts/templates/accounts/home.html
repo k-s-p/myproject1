@@ -1,0 +1,10 @@
+{% extends "accounts/base.html" %}
+{% block title %}Home{% endblock %}
+{% load static %}
+
+{% block body %}
+this is home.html
+{% load account %}
+
+{% user_display user %}
+{% endblock %}

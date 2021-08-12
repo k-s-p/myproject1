@@ -11,12 +11,14 @@
             {% endif %}
             <p>{{ thread.body }}</p>
             <p>[{{ thread.username }}]:{{ thread.published }}</p>
-
-            {% for responses in responses.all %}
+            <hr color="blue">
+            {% for responses in responses.all %} 
                 <p>{{ responses.resno }}:[{{ responses.username }}]:{{ responses.published }}</p>
                 <p>{{ responses.body | linebreaks }}</p>
+                <hr>
             {% endfor %}
         </div>
+        
         <form method="POST" action="{% url 'pgfansite:res_insert' thread.id %}">
            <p>名前：<input type="text" name="username" value='名無し'></p>
            <p>本文:<br/>
