@@ -38,11 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'pgfansite.apps.PgfansiteConfig',
-    'accounts',                #追加
-    'django.contrib.sites',    #追加
-    'allauth',                 #追加
-    'allauth.account',         #追加
-    'allauth.socialaccount',   #追加
+    'accounts.apps.AccountsConfig',                #追加
+    'django_bootstrap5',                           #追加
 ]
 
 MIDDLEWARE = [
@@ -57,7 +54,7 @@ MIDDLEWARE = [
 
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
-    'allauth.account.auth_backends.AuthenticationBackend',
+    # 'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
 ROOT_URLCONF = 'myproject1.urls'
@@ -65,7 +62,7 @@ ROOT_URLCONF = 'myproject1.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -147,14 +144,15 @@ MEDIA_ROOT = BASE_DIR
 SITE_ID = 1
 
 # ログイン・ログアウト時のリダイレクト先
-LOGIN_REDIRECT_URL = 'home'
-ACCOUNT_LOGOUT_REDIRECT_URL = '/accounts/login/'
+LOGIN_REDIRECT_URL = '/'
+LOGIN_URL = '/accounts/login/'
+LOGOUT_REDIRECT_URL = '/'
 
-# 認証方式を「メルアドとパスワード」に設定
-ACCOUNT_AUTHENTICATION_METHOD = 'email'
-# ユーザ名は使用しない
-ACCOUNT_USERNAME_REQUIRED = False
+# # 認証方式を「メルアドとパスワード」に設定
+# ACCOUNT_AUTHENTICATION_METHOD = 'email'
+# # ユーザ名は使用しない
+# ACCOUNT_USERNAME_REQUIRED = False
 
-# ユーザ登録時に確認メールを送信するか(none=送信しない, mandatory=送信する)
-ACCOUNT_EMAIL_VERIFICATION = 'none'
-ACCOUNT_EMAIL_REQUIRED = True   # ユーザ登録にメルアド必須にする
+# # ユーザ登録時に確認メールを送信するか(none=送信しない, mandatory=送信する)
+# ACCOUNT_EMAIL_VERIFICATION = 'none'
+# ACCOUNT_EMAIL_REQUIRED = True   # ユーザ登録にメルアド必須にする

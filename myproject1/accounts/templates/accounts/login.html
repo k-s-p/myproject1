@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load django_bootstrap5 %}
+
+
+
+{% block content %}
+
+{% include 'pgfansite/snippets/header.html' %}
+
+<h2>ログイン</h2>
+
+<form method="post">
+    {% csrf_token %}
+    <input type="hidden" name="next" value="{{ next }}" style="width:100px; margin: 0 auto;"/>
+    {% bootstrap_form form %}
+    {% bootstrap_button button_tyoe="submit" content="ログイン" %}
+</form>
+{% endblock %}

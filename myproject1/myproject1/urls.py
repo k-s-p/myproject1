@@ -22,7 +22,6 @@ from django.views.generic import TemplateView #追加
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('pgfansite/', include('pgfansite.urls')),
-    path('', TemplateView.as_view(template_name='accounts/home.html'), name='home'), #追加
-    path('accounts/', include('allauth.urls')), #追加
+    path('', include('pgfansite.urls')),
+    path('accounts/', include('accounts.urls')), #追加
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
